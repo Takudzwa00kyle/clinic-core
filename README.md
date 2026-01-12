@@ -1,114 +1,183 @@
 <img src="apps/web/public/logo.png" align="left" width="130" height="130">
 
-<div align="right">
+<div align="left">
 
 
+# Clinic Core
 
-# Clinic-core
-### A free, open-source video editor for web, desktop, and mobile.
-</div>
+### Backend service for managing core clinic operations (patients, appointments, services, and analytics)
 
-## Why?
+---
 
-- **Privacy**: Your videos stay on your device
-- **Free features**: Every basic feature of CapCut is paywalled now
-- **Simple**: People want editors that are easy to use - CapCut proved that
+## Overview
 
-## Features
+**Clinic Core** is a Node.js backend application built to handle the foundational operations of a medical clinic. It exposes RESTful APIs for managing patients, appointments, clinic services, authentication, and basic analytics.
 
-- Timeline-based editing
-- Multi-track support
-- Real-time preview
-- No watermarks or subscriptions
-- Analytics provided by [Databuddy](https://www.databuddy.cc?utm_source=opencut), 100% Anonymized & Non-invasive.
+The project focuses on clean backend structure, practical Express.js usage, and real-world patterns such as authentication middleware, database pooling, and background jobs.
+
+---
+
+## Why this project exists
+
+* To model a **realistic healthcare backend** using Node.js and Express
+* To practice **API design, authentication, and database integration**
+* To demonstrate backend fundamentals relevant to **junior software engineering roles**
+* To serve as a foundation that can later be extended with a frontend, CI/CD, or cloud deployment
+
+---
+
+## Core Features
+
+* Patient management (CRUD operations)
+* Appointment scheduling and tracking
+* Clinic services management
+* Authentication & authorization middleware
+* Analytics endpoints
+* Background cron jobs
+* PostgreSQL database integration
+* RESTful API architecture
+
+---
+
+## Tech Stack
+
+* **Runtime:** Node.js
+* **Framework:** Express.js
+* **Database:** PostgreSQL
+* **Authentication:** JWT + bcrypt
+* **Environment Management:** dotenv
+* **Other:** CORS, cron jobs
+
+---
 
 ## Project Structure
 
-- `apps/web/` – Main Next.js web application
-- `src/components/` – UI and editor components
-- `src/hooks/` – Custom React hooks
-- `src/lib/` – Utility and API logic
-- `src/stores/` – State management (Zustand, etc.)
-- `src/types/` – TypeScript types
+```
+├── server.js              # Application entry point
+├── config/
+│   └── db.js              # PostgreSQL connection pool
+├── routes/
+│   ├── auth.js            # Authentication routes
+│   ├── patient.js         # Patient-related endpoints
+│   ├── appointment.js     # Appointment endpoints
+│   ├── services.js        # Clinic services endpoints
+│   └── analytics.js       # Analytics routes
+├── middlewares/
+│   └── authMiddleware.js  # JWT authentication middleware
+├── cron/
+│   └── jobs.js            # Background scheduled jobs
+├── .env.example
+└── package.json
+```
+
+---
+
+## Architecture & Design Decisions
+
+* **Layered routing** using Express routers for separation of concerns
+* **Centralized database pooling** for efficient PostgreSQL connections
+* **JWT-based authentication** handled via middleware
+* **bcrypt hashing** for secure password storage
+* **Cron jobs** for background or scheduled tasks
+* **Environment-based configuration** using `.env`
+
+---
 
 ## Getting Started
 
 ### Prerequisites
 
-Before you begin, ensure you have the following installed on your system:
+* Node.js (v18+ recommended)
+* PostgreSQL
+* npm or bun
 
-- [Bun](https://bun.sh/docs/installation)
-- [Docker](https://docs.docker.com/get-docker/) and [Docker Compose](https://docs.docker.com/compose/install/)
-- [Node.js](https://nodejs.org/en/) (for `npm` alternative)
+---
 
-### Setup
+### Installation
 
-1.  **Clone the repository**
-    ```bash
-    git clone <repo-url>
-    cd OpenCut
-    ```
+1. **Clone the repository**
 
-2.  **Start backend services**
-    From the project root, start the PostgreSQL and Redis services:
-    ```bash
-    docker-compose up -d
-    ```
+```bash
+git clone https://github.com/Takudzwa00kyle/clinic-core
+cd clinic-core
+```
 
-3.  **Set up environment variables**
-    Navigate into the web app's directory and create a `.env` file from the example:
-    ```bash
-    cd apps/web
-    cp .env.example .env
-    ```
-    *The default values in the `.env` file should work for local development.*
+2. **Install dependencies**
 
-4.  **Install dependencies**
-    Install the project dependencies using `bun` (recommended) or `npm`.
-    ```bash
-    # With bun
-    bun install
+```bash
+npm install
+# or
+bun install
+```
 
-    # Or with npm
-    npm install
-    ```
+3. **Configure environment variables**
 
-5.  **Run database migrations**
-    Apply the database schema to your local database:
-    ```bash
-    # With bun
-    bun run db:push:local
+```bash
+cp .env.example .env
+```
 
-    # Or with npm
-    npm run db:push:local
-    ```
+Update the database credentials and JWT secret as needed.
 
-6.  **Start the development server**
-    ```bash
-    # With bun
-    bun run dev
+4. **Start the server**
 
-    # Or with npm
-    npm run dev
-    ```
+```bash
+npm run dev
+# or
+node server.js
+```
 
-The application will be available at [http://localhost:3000](http://localhost:3000).
+The API will be available at:
 
-=======
+```
+http://localhost:5000
+```
 
+---
+
+## API Endpoints (Examples)
+
+* `GET /` – Health check
+* `POST /api/auth/login`
+* `POST /api/auth/register`
+* `GET /api/patients`
+* `POST /api/appointments`
+* `GET /api/services`
+
+---
+
+## Future Improvements
+
+* Input validation using Joi or Zod
+* Role-based access control
+* Pagination & filtering
+* API documentation with Swagger/OpenAPI
+* Unit & integration tests
+* Dockerized production setup
+* CI/CD pipeline integration
+
+---
 
 ## Contributing
 
-Visit [CONTRIBUTING.md](.github/CONTRIBUTING.md)
-=======
-We welcome contributions! Please see our [Contributing Guide](.github/CONTRIBUTING.md) for detailed setup instructions and development guidelines.
+Contributions are welcome.
 
-Quick start for contributors:
+* Fork the repository
+* Create a feature branch
+* Commit your changes
+* Open a pull request
 
-- Fork the repo and clone locally
-- Follow the setup instructions in CONTRIBUTING.md
-- Create a feature branch and submit a PR
+See [CONTRIBUTING.md](.github/CONTRIBUTING.md) for details.
+
+---
 
 ## License
 
-[MIT LICENSE](LICENSE)
+This project is licensed under the **MIT License**.
+
+---
+
+## Author
+
+**Takudzwa Hondova**
+Aspiring Software Engineer | Backend Development
+
