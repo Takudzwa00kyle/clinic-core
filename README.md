@@ -6,6 +6,7 @@
 # Clinic Core
 ### Backend service for managing core clinic operations (patients, appointments, services, and analytics)
 </div>
+
 ---
 
 ## Overview
