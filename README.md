@@ -1,12 +1,11 @@
-<img src="apps/web/public/logo.png" align="left" width="130" height="130">
+<img src="apps/web/public/logo.png" align="left" width="210" height="210">
 
-<div align="left">
+<div align="right">
 
 
 # Clinic Core
-
 ### Backend service for managing core clinic operations (patients, appointments, services, and analytics)
-
+</div>
 ---
 
 ## Overview
