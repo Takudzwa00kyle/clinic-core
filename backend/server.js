@@ -9,6 +9,7 @@ const authMiddleware = require('./middlewares/authMiddleware'); // Import authen
 const bcrypt = require('bcrypt'); // Import bcrypt for password hashing
 const patientRoutes = require('./routes/patient'); // Import patient routes
 const serviceRoutes = require('./routes/services'); // Import service routes
+const dashboardRoutes = require('./routes/dashboard'); // Import dashboard routes
 
 
 // Load environment variables from .env file
@@ -20,8 +21,17 @@ const app = express();
 app.use('/api/auth', authRoutes); // Use auth routesj
 
 // Middlewares
-app.use(cors());
+app.use(cors({
+    origin: "http://localhost:3000", // frontend URL
+    credentials: true,               // allow cookies
+}));
 app.use(express.json()); // Parses JSON request bodies
+
+app.use("/api/dashboard", dashboardRoutes);   // Dashboard routes
+
+app.get("/api/test", (req, res) => {
+  res.send("Test route works");
+});
 
 // Test route (default root)
 app.get('/', (req, res) => {
