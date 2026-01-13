@@ -184,5 +184,4 @@ This project is licensed under the **MIT License**.
 ## Author
 
 **Takudzwa Hondova**
-Aspiring Software Engineer | Backend Development
-
+Aspiring Software Engineer | Backend Development Enthusiast
