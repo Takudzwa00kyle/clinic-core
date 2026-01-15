@@ -3,11 +3,21 @@
 import { useEffect, useState } from "react";
 import { api } from "@/lib/api";
 
+type DashboardStats = {
+  patients: number;
+  appointments: number;
+  services: number;
+};
+
+type DashboardResponse = {
+  stats: DashboardStats;
+};
+
 export default function DashboardPage() {
-  const [stats, setStats] = useState<any>(null);
+  const [stats, setStats] = useState<DashboardStats | null>(null);
 
   useEffect(() => {
-    api.get("/api/dashboard")
+    api.get<DashboardResponse>("/api/dashboard")
       .then(res => setStats(res.data.stats))
       .catch(err => console.error("Dashboard API error:", err));
   }, []);
